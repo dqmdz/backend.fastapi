@@ -7,4 +7,13 @@ class Product(models.Model):
     description = fields.TextField()
 
     class Meta:
-        table = "products" 
+        table = "products"
+
+class Sale(models.Model):
+    id = fields.IntField(pk=True, generated=True)
+    sale_date = fields.DatetimeField(auto_now_add=True)
+    quantity = fields.IntField()
+    product = fields.ForeignKeyField('models.Product', related_name='sales')
+
+    class Meta:
+        table = "sales"

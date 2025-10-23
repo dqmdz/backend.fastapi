@@ -2,11 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import init_db, close_db
-from app.routers import products
+from app.routers import products, sales
 
 app = FastAPI(
     title="Product API",
-    description="API for managing products",
+    description="API for managing products and sales",
     version="1.0.0"
 )
 
@@ -21,6 +21,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(products.router, prefix="/api/products", tags=["products"])
+app.include_router(sales.router, prefix="/api/sales", tags=["sales"])
 
 @app.on_event("startup")
 async def startup_event():

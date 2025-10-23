@@ -1,0 +1,92 @@
+### Variables
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+
+### Get all sales
+GET {{baseUrl}}/sales
+Content-Type: {{contentType}}
+
+### Get all sales with pagination (skip 0, limit 10)
+GET {{baseUrl}}/sales?skip=0&limit=10
+Content-Type: {{contentType}}
+
+### Get a specific sale by ID
+GET {{baseUrl}}/sales/1
+Content-Type: {{contentType}}
+
+### Create a new sale - Sale for product 1
+POST {{baseUrl}}/sales
+Content-Type: {{contentType}}
+
+{
+    "quantity": 5,
+    "product_id": 1
+}
+
+### Create a new sale - Sale for product 2
+POST {{baseUrl}}/sales
+Content-Type: {{contentType}}
+
+{
+    "quantity": 2,
+    "product_id": 2
+}
+
+### Create a new sale - Sale for product 3
+POST {{baseUrl}}/sales
+Content-Type: {{contentType}}
+
+{
+    "quantity": 10,
+    "product_id": 3
+}
+
+### Update a sale
+PUT {{baseUrl}}/sales/1
+Content-Type: {{contentType}}
+
+{
+    "quantity": 8,
+    "product_id": 1
+}
+
+### Delete a sale
+DELETE {{baseUrl}}/sales/1
+Content-Type: {{contentType}}
+
+### Error Cases
+
+### Try to get a non-existent sale
+GET {{baseUrl}}/sales/999
+Content-Type: {{contentType}}
+
+### Try to update a non-existent sale
+PUT {{baseUrl}}/sales/999
+Content-Type: {{contentType}}
+
+{
+    "quantity": 3,
+    "product_id": 1
+}
+
+### Try to delete a non-existent sale
+DELETE {{baseUrl}}/sales/999
+Content-Type: {{contentType}}
+
+### Try to create a sale with invalid product_id
+POST {{baseUrl}}/sales
+Content-Type: {{contentType}}
+
+{
+    "quantity": 1,
+    "product_id": 999
+}
+
+### Try to create a sale with invalid data
+POST {{baseUrl}}/sales
+Content-Type: {{contentType}}
+
+{
+    "quantity": -5,
+    "product_id": ""
+}
